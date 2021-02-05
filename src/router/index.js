@@ -14,7 +14,7 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
+    path: '/index',
     component: Index
   },
   {
@@ -57,7 +57,7 @@ const routes = [
   },
   {
     path: '*', // 通配符
-    redirect: '/' // 重定向地址
+    redirect: '/index' // 重定向地址
   }
 ]
 

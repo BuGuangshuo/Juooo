@@ -37,4 +37,30 @@ export default {
     section {
       padding-bottom: 50px;
     }
+    img{
+    border: none;
+    border-color: transparent;
+    vertical-align: middle;
+    width: 100%;
+    height: 100%;
+    }
+    .text-double {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-all;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    }
+    .text-space{
+      text-indent: 1rem;
+    }
+    .text-single {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+    .c_ff6{
+      color: #ff6743!important;
+    }
 </style>

@@ -85,32 +85,212 @@
                     </div>
                 </div>
             </section>
-            <section class="home-tour"></section>
-            <section class="home-category"></section>
-            <section class="home-model"></section>
+            <!-- 巡回演出区 -->
+            <section class="home-tour">
+                <div class="block-content">
+                    <div class="block-content__title">
+                        <h3 class="block-content__title--title">巡回演出</h3>
+                        <div class="block-content__title__arrow">
+                            <span class="block-content__title__arrow--tips">全部</span>
+                            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoBAMAAAB+0KVeAAAALVBMVEUAAABmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmaTgChpAAAAD3RSTlMA/Aa1qrzcwa+ezcijk5JAYXVXAAAAVUlEQVQoz2MYtoDNAIsghzA2pYEOWASZRbApNWzAIqiKTSlT4QEsouqS2JQGXsAiqpVApCDTxgeYgtoy2OyZQJyLmAqxhAirBLbwcCAy5NgaGIYzAADnxQppL/x7ngAAAABJRU5ErkJggg==" alt="" class="block-content__title__arrow--icon">
+                        </div>
+                    </div>
+                    <div>
+                        <div class="tour-wrap__info">
+                            <div class="tour-block">
+                                <tour-swiper :key="tourList.length">
+                                    <div class="swiper-slide" v-for="tour_data in tourList" :key="tour_data.id">
+                                        <div class="tour-block__item">
+                                            <div class="ju-schedule-cell-wrapper">
+                                                <div class="ju-schedule-cell">
+                                                    <div class="ju-schedule-cell__cover">
+                                                        <div class="ju-schedule-cell__cover__img">
+                                                            <img :src="tour_data.mobile_col_img" alt="" class="ju-image">
+                                                        </div>
+                                                    </div>
+                                                    <div class="ju-schedule-cell__info">
+                                                        <div class="ju-schedule-cell__info__date-week">
+                                                            <span class="ju-schedule-cell__info__date-week__date"></span>
+                                                            <span class="ju-schedule-cell__info__date-week__week">{{tour_data.start_time | dateFilter}} - {{tour_data.end_time | dateFilter}}</span>
+                                                        </div>
+                                                        <div class="ju-schedule-cell__info__name">
+                                                            <div class="ju-schedule-cell__info__name__content ">
+                                                                {{tour_data.name}}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="tour-block__item__bottom">
+                                                <p class="tour-block__item__bottom__price">
+                                                    <span class="tour-block__item__bottom__price--price">￥</span>
+                                                    <span class="tour-block__item__bottom__price--price">{{tour_data.min_price}} </span>
+                                                    <span class="tour-block__item__bottom__price--tips">起</span>
+                                                </p>
+                                                <div class="tour-block__item__bottom__citys">
+                                                    <div class="tour-block__item__bottom__citys__left">
+                                                        <span class="tour-block__item__bottom__citys__left--num">{{tour_data.sch_num}} </span>
+                                                        <span>城巡演</span>
+                                                    </div>
+                                                    <div class="tour-block__item__bottom__citys__right">
+                                                        <span>
+                                                            {{tour_data.citys | cityFilter}}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </tour-swiper>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- 演唱会区 -->
+            <section class="home-category">
+                <div class="category-block__list">
+                    <div class="category-block__list__wrap">
+                        <h3 class="category-block__list__wrap__title">演唱会</h3>
+                        <a href="#" class="category-block__list__wrap__arrow">
+                            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoBAMAAAB+0KVeAAAALVBMVEUAAABmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmaTgChpAAAAD3RSTlMA/Aa1qrzcwa+ezcijk5JAYXVXAAAAVUlEQVQoz2MYtoDNAIsghzA2pYEOWASZRbApNWzAIqiKTSlT4QEsouqS2JQGXsAiqpVApCDTxgeYgtoy2OyZQJyLmAqxhAirBLbwcCAy5NgaGIYzAADnxQppL/x7ngAAAABJRU5ErkJggg==" alt="">
+                        </a>
+                    </div>
+                    <div class="category-block__list__row">
+                        <div class="row--bg" style="background: rgb(171, 149, 119)">
+                            <a href="#" class="category-block__list__row__wrap">
+                                <div class="category-block__list__row__item">
+                                    <img src="https://image.juooo.com//group1/M00/00/1E/rBAAFGAT7MWAKLBpAACVe_3u9Ig797.jpg" class="img">
+                                    <div class="juooo_sponsor">
+                                        <span class="icon-img icon-destine"></span>
+                                        <span class="logo_i"></span>
+                                    </div>
+                                </div>
+                                <div class="category-block__list__row__info">
+                                    <p class="category-block__list__row__info__date">
+                                        <strong>2021.04.19 </strong>
+                                        <span>周日 19:30</span>
+                                    </p>
+                                    <h3 class="category-block__list__row__info__title text-double">武汉人艺话剧《同船过渡》-舟山站</h3>
+                                    <p class="category-block__list__row__info__venue text-single">
+              舟山 |
+              舟山普陀大剧院（大剧场）
+            </p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="category-block__list__column">
+                            <category-swiper :key="categoryList.length">
+                                <div class="swiper-slide" style="width: 118.562px; margin-right: 8px;" v-for="category_data in categoryList" :key="category_data.sche_id">
+                                    <a href="#" class="category-block__list__column__wrap">
+                                        <div class="category-block__list__column__item">
+                                            <img :src="category_data.pic" alt="">
+                                            <div class="juooo_sponsor" v-html="category_data.ico">
+                                                {{category_data.ico}}
+                                            </div>
+                                        </div>
+                                        <h3 class="category-block__list__column__title text-double">{{category_data.schedular_name}}</h3>
+                                        <p class="category-block__list__column__price">
+                                            <strong class="c_ff6">{{category_data.low_price}}</strong>
+                                            <span>起</span>
+                                        </p>
+                                    </a>
+                                </div>
+                            </category-swiper>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- 为你推荐区域 -->
+            <section class="home-model">
+                <h3 class="model-block__title">为你推荐</h3>
+                <div class="show-model">
+                    <div class="show-model__main">
+                        <van-list
+                            v-model="loading"
+                            :finished="finished"
+                            finished-text="没有更多了"
+                            @load="onLoad" :immediate-check="false"
+                        >
+                        <div class="show-model__item" v-for="model_data in modelList" :key="model_data.show_id">
+                            <div>
+                                <div class="falls-cell">
+                                    <div class="falls-cell__image">
+                                        <img :src="model_data.pic" alt="">
+                                        <span class="falls-cell__image__label">{{model_data.city_name}}</span>
+                                    </div>
+                                        <div class="falls-cell__info">
+                                    <div class="falls-cell__info__title">
+                                        <div class="falls-cell__info__title__sponsor">
+                                            <img :src="model_data.method_icon" alt="">
+                                        </div>
+                                        <h3 class="falls-cell__info__title__cell text-space">{{model_data.name}}</h3>
+                                    </div>
+                                    <p class="falls-cell__info__date">
+                                        <span>{{model_data.start_show_time}} {{model_data.show_time_bottom}}</span>
+                                    </p>
+                                    <p class="falls-cell__info__price">
+                                        <span class="falls-cell__info__price--price">￥{{model_data.max_price}} </span>
+                                        <span class="falls-cell__info__price__tip">起</span>
+                                    </p>
+                                    <p class="falls-cell__info__support">
+                                        <span class="falls-cell__info__support--label" v-for="desc_data in model_data.support_desc" :key="desc_data">{{desc_data}}</span>
+                                    </p>
+                                </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        </van-list>
+                    </div>
+                </div>
+            </section>
         </main>
     </div>
 
 </template>
 <script>
 import Vue from 'vue'
-import { NavBar, Icon, Search } from 'vant'
+import { NavBar, Icon, Search, List } from 'vant'
 import indexSwiper from './index/IndexSwiper.vue'
 import vipSwiper from './index/VipSwiper.vue'
+import tourSwiper from './index/TourSwiper.vue'
+import moment from 'moment'
+import categorySwiper from './index/CategorySwiper.vue'
 /* import http from '@/util/http' */
 import axios from 'axios'
-Vue.use(NavBar).use(Icon).use(Search)
+Vue.use(NavBar).use(Icon).use(Search).use(List)
+Vue.filter('dateFilter', (date) => {
+  return moment(date * 1000).format('YYYY-MM-DD')
+})
+Vue.filter('cityFilter', (citys) => {
+  return citys.map((item) => item.name).join(' | ')
+})
+/* Vue.filter('icoFilter',(ico)=>{
+    console.log(ico.replace(/&lt;/g,'<'))
+    return ico.replace(/&lt;/g,'<')
+}) */
 export default {
   components: {
     indexSwiper,
-    vipSwiper
+    vipSwiper,
+    tourSwiper,
+    categorySwiper
   },
   data () {
     return {
       value: '',
       bannerlist: [],
       labelList: [],
-      vipList: []
+      vipList: [],
+      tourList: [],
+      categoryList: [],
+      modelList: [],
+      descList: [],
+      current: 1, // 数据页
+      total: 0, // 数据总长度
+      loading: false, // 当页面到底时 loading会自动变为true 方式页面重复提交
+      finished: false // 当数据都加载完毕时，将finished设置为true会停止加载
     }
   },
   methods: {
@@ -119,6 +299,19 @@ export default {
     },
     onClickRight () {
       console.log('right')
+    },
+    onLoad () { // 懒加载onLoad事件
+      console.log('到底了')
+      if (this.modelList.length === this.total && this.total !== 0) { // 判断数据是否加载完以及在别的页面跳转回来时的bug
+        this.finished = true
+      }
+      this.current++
+      axios.get(`https://api.juooo.com/Show/Search/getShowList?city_id=0&category=&keywords=&venue_id=&start_time=&show_ids=&page=${this.current}&referer_type=index&time=1612691473537&version=6.1.22&referer=2&sign=e06f13ba304c4fa984d9982dc7be5f73`).then((res) => {
+        setTimeout(() => {
+          this.modelList = [...this.modelList, ...res.data.data.list]
+          this.loading = false // 取得数据后将loading赋为false，等到下次到底之后再自动变为true
+        }, 0)
+      })
     }
   },
   mounted () {
@@ -128,6 +321,16 @@ export default {
     })
     axios.get('https://api.juooo.com/vip/index/getVipHomeSchedular?city_id=0&version=6.1.22&referer=2').then((res) => {
       this.vipList = res.data.data.allList
+    })
+    axios.get('https://api.juooo.com/show/tour/getList?version=6.1.22&referer=2').then((res) => {
+      this.tourList = res.data.data.list
+    })
+    axios.get('https://api.juooo.com/home/index/getFloorShow?city_id=0&version=6.1.22&referer=2').then((res) => {
+      this.categoryList = res.data.data[0].list
+    })
+    axios.get('https://api.juooo.com/Show/Search/getShowList?city_id=0&category=&keywords=&venue_id=&start_time=&show_ids=&page=1&referer_type=index&time=1612685410919&version=6.1.22&referer=2&sign=23735a2faa34439ec20641340b37a183').then((res) => {
+      this.modelList = res.data.data.list
+      this.total = res.data.data.total // 在第一次加载数据时将total总长度赋值
     })
   }
 }
@@ -307,6 +510,461 @@ export default {
                     align-items: center;
                     justify-content: center;
                     box-sizing: border-box;
+                }
+            }
+        }
+    }
+    /* 巡回演出区 */
+    .home-tour{
+        padding: 0.53333rem 0.13333rem 0.4rem 0.34667rem;
+        .block-content__title{
+            display: flex;
+            justify-content: space-between;
+            .block-content__title--title{
+                font-size: 0.48rem;
+                line-height: 0.61333rem;
+                height: 0.61333rem;
+                color: #232323;
+                font-weight: 700;
+            }
+            .block-content__title__arrow{
+                display: flex;
+                align-items: center;
+                padding-right: 0.13333rem;
+                .block-content__title__arrow--tips{
+                    font-size: 0.34667rem;
+                    color: #232323;
+                }
+                .block-content__title__arrow--icon{
+                    width: 0.53333rem;
+                    height: 0.53333rem;
+                }
+            }
+        }
+        .tour-wrap__info{
+            padding-right: 0.26667rem;
+            .tour-block{
+                margin-top: 0.29333rem;
+                .tour-block__item{
+                    height: 4.42667rem;
+                    background-color: #F5F5F5;
+                    border-radius: 0.16rem;
+                    padding: 0.4rem 0.34667rem;
+                    box-sizing: border-box;
+                    position: relative;
+                    .ju-schedule-cell-wrapper {
+                        width: 100%;
+                        .ju-schedule-cell{
+                            display: flex;
+                            height: 3.84rem;
+                            width: 100%;
+                            .ju-schedule-cell__cover{
+                                width: 2.66667rem;
+                                height: 3.62667rem;
+                                border-radius: 0.13333rem;
+                                border: 1px solid #EBEBEB;
+                                .ju-schedule-cell__cover__img{
+                                    width: 100%;
+                                    height: 100%;
+                                    border-radius: 0.10667rem;
+                                    overflow: hidden;
+                                    .ju-image{
+                                            margin: 0;
+                                            padding: 0;
+                                            border: 0;
+                                            outline: 0;
+                                            width: 100%;
+                                    height: 100%;
+                                    }
+                                }
+                            }
+                            .ju-schedule-cell__info{
+                                    margin-left: 0.4rem;
+                                    width: 0;
+                                    flex: 1;
+                                    .ju-schedule-cell__info__date-week{
+                                        color: #666;
+                                        margin-top: 0.10667rem;
+                                        display: flex;
+                                        align-items: center;
+                                        .ju-schedule-cell__info__date-week__date{
+                                            display: inline-block;
+                                            height: 0.42667rem;
+                                            line-height: 0.42667rem;
+                                            font-size: 0.42667rem;
+                                        }
+                                        .ju-schedule-cell__info__date-week__week{
+                                            margin-left: 0;
+                                            display: inline-block;
+                                            font-size: 0.32rem;
+                                            height: 0.32rem;
+                                            line-height: 0.32rem;
+                                            vertical-align: bottom;
+                                        }
+
+                                        }
+                                    .ju-schedule-cell__info__name{
+                                        display: flex;
+                                        align-items: center;
+                                        flex-wrap: wrap;
+                                        height: 1.49333rem;
+                                        .ju-schedule-cell__info__name__content {
+                                            font-size: 0.37333rem;
+                                            font-weight: normal;
+                                            color: #232323;
+                                            line-height: 0.61333rem;
+                                            height: 1.22667rem;
+                                            overflow: hidden;
+                                            text-overflow: ellipsis;
+                                            word-break: break-all;
+                                    }
+                                    }
+                            }
+                        }
+                    }
+                    .tour-block__item__bottom{
+                            position: absolute;
+                            bottom: 0.50667rem;
+                            left: 3.41333rem;
+                            width: 5.48rem;
+                            .tour-block__item__bottom__price{
+                                height: 0.53333rem;
+                                line-height: 0.53333rem;
+                                .tour-block__item__bottom__price--price{
+                                    color: #ff6743;
+                                    font-size: 0.42667rem;
+                                }
+                                .tour-block__item__bottom__price--tips{
+                                    color: #999;
+                                    font-size: 0.32rem;
+                                }
+                            }
+                            .tour-block__item__bottom__citys{
+                                border-top: 1px solid rgba(204,204,204,0.5);
+                                    display: flex;
+                                    padding-top: 0.2rem;
+                                    margin-top: 0.26667rem;
+                                    .tour-block__item__bottom__citys__left{
+                                        color: #999;
+                                        font-size: 0.32rem;
+                                        margin-right: 0.2rem;
+                                        max-width: 1.73333rem;
+                                        .tour-block__item__bottom__citys__left--num{
+                                            color: #ff6743;
+                                        }
+                                    }
+                                    .tour-block__item__bottom__citys__right{
+                                        flex: 1;
+                                        color: #666;
+                                        font-size: 0.32rem;
+                                        overflow: hidden;
+                                        text-overflow: ellipsis;
+                                        white-space: nowrap;
+                                        .delimiter{
+                                            display: inline-block;
+                                            margin-left: 0.13333rem;
+                                            margin-right: 0.13333rem;
+                                        }
+                                    }
+                            }
+                    }
+                }
+            }
+        }
+    }
+    /* 演唱会区 */
+    .home-category{
+        padding-bottom: 0;
+        margin-bottom: 0.66667rem;
+        .category-block__list{
+            padding-bottom: 0;
+            .category-block__list__wrap{
+                overflow: hidden;
+                .category-block__list__wrap__title{
+                    height: 0.61333rem;
+                    line-height: 0.61333rem;
+                    font-size: 0.50667rem;
+                    font-weight: 700;
+                    color: #232323;
+                    padding-left: 0.4rem;
+                    float: left;
+                }
+                .category-block__list__wrap__arrow{
+                    display: block;
+                    width: 0.53333rem;
+                    height: 0.53333rem;
+                    margin-right: 0.26667rem;
+                    margin-top: 0.04rem;
+                    float: right;
+                    position: relative;
+                    img{
+                        position: absolute;
+                    }
+                }
+            }
+            .category-block__list__row{
+                margin-top: 0.4rem;
+                .row--bg{
+                    background-color: rgba(0,0,0,0.2);
+                    padding: 0.37333rem 0 0.37333rem 0.4rem;
+                    .category-block__list__row__wrap{
+                        display: flex;
+                        .category-block__list__row__item{
+                            width: 2.66667rem;
+                            height: 3.62667rem;
+                            border-radius: 0.10667rem;
+                            border: solid 1px #ebebeb;
+                            overflow: hidden;
+                            position: relative;
+                            .juooo_sponsor{
+                                .icon-destine{
+
+                                }
+                                .icon-img{
+                                position: absolute;
+                                right: 0.10667rem;
+                                top: 0.10667rem;
+                                display: block;
+                            }
+                            .logo_i{
+                                position: absolute;
+                                left: 0.10667rem;
+                                top: -0.02667rem;
+                                width: 0.77333rem;
+                                height: 0.93333rem;
+                                display: block;
+                                background: url(/static/img/juooo.f698448.png) center center no-repeat;
+                                background-size: 100%;
+                            }
+                            }
+
+                        }
+                        .category-block__list__row__info{
+                            flex: 1;
+                            margin-left: 0.4rem;
+                            color: #fefefe;
+                            padding-top: 0.42667rem;
+                            .category-block__list__row__info__date{
+                                font-size: 0.32rem;
+                                height: 0.64rem;
+                                line-height: 0.64rem;
+                                letter-spacing: 1px;
+                                strong{
+                                    font-weight: normal;
+                                    font-size: 0.42667rem;
+                                }
+                            }
+                            .category-block__list__row__info__title{
+                                width: 90%;
+                                font-size: 0.37333rem;
+                                line-height: 0.6rem;
+                                max-height: 1.2rem;
+                                min-height: 0.6rem;
+                                margin-top: 0.26667rem;
+                                font-weight: normal;
+                            }
+                            .category-block__list__row__info__venue{
+                                width: 5.6rem;
+                                font-size: 0.32rem;
+                                height: 0.64rem;
+                                line-height: 0.64rem;
+                                margin-top: 0.26667rem;
+                            }
+                        }
+                    }
+                }
+                .category-block__list__column{
+                    padding: 0.4rem 0 0 0.4rem;
+                    .category-block__list__column__wrap{
+                        display: block;
+                        .category-block__list__column__item{
+                            width: 2.85333rem;
+                            height: 3.89333rem;
+                            border-radius: 0.10667rem;
+                            border: solid 1px #ebebeb;
+                            position: relative;
+                            overflow: hidden;
+                            .juooo_sponsor{
+                                .icon-destine{
+
+                                }
+                                .icon-img {
+                                position: absolute;
+                                right: 0.10667rem;
+                                top: 0.10667rem;
+                                display: block;
+                            }
+                            .logo_i{
+                                position: absolute;
+                                left: 0.10667rem;
+                                top: -0.02667rem;
+                                width: 0.77333rem;
+                                height: 0.93333rem;
+                                display: block;
+                                background: url(/static/img/juooo.f698448.png) center center no-repeat;
+                                background-size: 100%;
+                            }
+                            .ju_cheng {
+                                background: url(/static/img/ju_cheng.b8e9574.png) center center no-repeat;
+                                background-size: 100%;
+                                }
+                            }
+                        }
+                        .category-block__list__column__title{
+                            width: 100%;
+                            line-height: 0.56rem;
+                            min-height: 1.09333rem;
+                            font-size: 0.37333rem;
+                            color: #232323;
+                            margin-top: 0.32rem;
+                            font-weight: normal;
+                        }
+                        .category-block__list__column__price{
+                            font-size: 0.29333rem;
+                            color: #999;
+                            height: 0.53333rem;
+                            display: flex;
+                            align-items: baseline;
+                            margin-top: 0px;
+                            strong{
+                                font-size: 0.42667rem;
+                                letter-spacing: 0px;
+                                margin-right: 0.10667rem;
+                                font-weight: normal;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    /* 为你推荐区 */
+    .home-model{
+        width: 100%;
+        background: linear-gradient(0deg, #f0f0f0, #f0f0f0, #fefefe);
+        .model-block__title{
+            padding: 0.26667rem 0.4rem 0.13333rem;
+            font-weight: 700;
+            font-size: 0.48rem;
+            line-height: 0.61333rem;
+            height: 0.61333rem;
+            color: #232323;
+        }
+        .show-model{
+            width: 100%;
+            padding: 0 0.4rem;
+            box-sizing: border-box;
+            .show-model__main{
+                width: 100%;
+                position: relative;
+                display: flex;
+                flex-wrap: wrap;
+                .van-list{
+                    display: flex;
+                    flex-wrap: wrap;
+                        .show-model__item{
+                    flex: 1;
+                    width: 4.52rem;
+                    transition: all 1s;
+                    .falls-cell{
+                        width: 4.52rem;
+                        border-radius: 0.16rem;
+                        overflow: hidden;
+                        background-color: #fefefe;
+                        border: 1px solid #ebebeb;
+                        .falls-cell__image{
+                        position: relative;
+                        width: 100%;
+                        height: 6.17333rem;
+
+                        .img{
+                            border: none;
+                            border-color: transparent;
+                            vertical-align: middle;
+                            width: 100%;
+                            height: 100%;
+                        }
+                        .falls-cell__image__label{
+                            position: absolute;
+                            right: 0.2rem;
+                            top: 0.2rem;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            height: 0.48rem;
+                            padding: 0 0.12rem;
+                            background: linear-gradient(-45deg, rgba(38,38,38,0.8), rgba(70,68,65,0.8));
+                            border-radius: 0.02667rem;
+                            color: #FEFEFE;
+                            font-size: 0.32rem;
+                        }
+                    }
+                    .falls-cell__info{
+                        padding: 0.21333rem 0.29333rem 0.29333rem;
+                        .falls-cell__info__title{
+                            position: relative;
+                            .falls-cell__info__title__sponsor{
+                                position: absolute;
+                                left: 0;
+                                top: -17px;
+                                display: block;
+                                width: 0.89333rem;
+                                height: 0.45333rem;
+                                img{
+                                    border: none;
+                                    border-color: transparent;
+                                    vertical-align: middle;
+                                    width: 100%;
+                                    height: 100%;
+                                }
+                            }
+                            .falls-cell__info__title__cell{
+                                color: #232323;
+                                font-weight: normal;
+                                font-size: 0.37333rem;
+                                line-height: 0.53333rem;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                                word-break: break-all;
+                                display: -webkit-box;
+                                -webkit-line-clamp: 2;
+                                -webkit-box-orient: vertical;
+                            }
+                        }
+                        .falls-cell__info__date{
+                            margin-top: 0.10667rem;
+                            font-size: 0.34667rem;
+                            color: #666;
+                            line-height: 0.53333rem;
+                        }
+                        .falls-cell__info__price{
+                            margin-top: 0.10667rem;
+                            .falls-cell__info__price--price{
+                                color: #FF6743;
+                                font-size: 0.42667rem;
+                            }
+                            .falls-cell__info__price__tip{
+                                color: #999;
+                                font-size: 0.29333rem;
+                            }
+                        }
+                        .falls-cell__info__support{
+                            overflow: hidden;
+                            margin-top: 0.13333rem;
+                            .falls-cell__info__support--label{
+                                display: inline-block;
+                                padding: 1px 0.13333rem;
+                                background-color: #fff1ef;
+                                border-radius: 0.22667rem;
+                                color: #FF6743;
+                                font-size: 0.29333rem;
+                                margin-right: 0.13333rem;
+                                margin-bottom: 0.13333rem;
+                            }
+                        }
+                    }
+                    }
+                }
                 }
             }
         }

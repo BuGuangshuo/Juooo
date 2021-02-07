@@ -1,11 +1,11 @@
 <template>
-    <div class="swiper-container rain">
+    <div class="swiper-container vip">
         <div class="swiper-wrapper">
             <slot></slot>
         </div>
         <!-- 如果需要分页器 -->
         <div class="swiper-pagination"></div>
-    </div>
+  </div>
 </template>
 <script>
 import Swiper from 'swiper/bundle'
@@ -18,7 +18,7 @@ export default {
     }
   },
   mounted () {
-    new Swiper('.rain', {
+    new Swiper('.vip', {
       loop: this.loop, // 开启循环
       pagination: {
         el: '.swiper-pagination',
@@ -34,7 +34,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    .rain{
+    .vip{
         width: 100%;
         padding-top: 0.4rem;
         border-top: 1px solid #f7eada;

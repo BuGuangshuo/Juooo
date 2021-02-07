@@ -1,5 +1,5 @@
 <template>
-    <div class="swiper-container index">
+    <div class="swiper-container tour">
         <div class="swiper-wrapper">
             <slot></slot>
         </div>
@@ -18,10 +18,11 @@ export default {
     }
   },
   mounted () {
-    new Swiper('.index', {
+    new Swiper('.tour', {
       loop: this.loop, // 开启循环
       pagination: {
-        el: '.swiper-pagination'
+        el: '.swiper-pagination',
+        bulletActiveClass: 'vip-bullet-active'
       },
       autoplay: {
         delay: 2000,
@@ -31,16 +32,13 @@ export default {
   }
 }
 </script>
-<style lang="scss" scoped>
-    .index{
-        width: 100%;
-        height: 3.73333rem;
-        border-radius: 0.16rem;
-    }
-    .swiper-slide{
-        img{
-            width: 100%;
-        }
-    }
 
+<style lang="scss" scoped>
+    .tour{
+        width: 100%;
+        padding-bottom: 0.66667rem;
+    }
+    .vip-bullet-active{
+        background-color: #ff6743;
+    }
 </style>

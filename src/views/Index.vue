@@ -1,7 +1,7 @@
 <template>
     <div>
         <!-- ======== header导航栏 ========= -->
-        <header>
+        <header class="stiky">
             <van-nav-bar
             left-text="返回"
             right-text="按钮"
@@ -191,7 +191,7 @@
                                         </div>
                                         <h3 class="category-block__list__column__title text-double">{{category_data.schedular_name}}</h3>
                                         <p class="category-block__list__column__price">
-                                            <strong class="c_ff6">{{category_data.low_price}}</strong>
+                                            <strong class="c_ff6">￥{{Number(category_data.low_price)}}</strong>
                                             <span>起</span>
                                         </p>
                                     </a>
@@ -208,11 +208,10 @@
                     <div class="show-model__main">
                         <van-list
                             v-model="loading"
-                            :finished="finished"
-                            finished-text="没有更多了"
+                            :finished="finished" loading-text=""
                             @load="onLoad" :immediate-check="false"
                         >
-                        <div class="show-model__item" v-for="model_data in modelList" :key="model_data.show_id">
+                        <div class="show-model__item" v-for="(model_data,index) in modelList" :key="index">
                             <div>
                                 <div class="falls-cell">
                                     <div class="falls-cell__image">
@@ -221,10 +220,10 @@
                                     </div>
                                         <div class="falls-cell__info">
                                     <div class="falls-cell__info__title">
-                                        <div class="falls-cell__info__title__sponsor">
+                                        <div class="falls-cell__info__title__sponsor" v-show="model_data.tag_icon">
                                             <img :src="model_data.method_icon" alt="">
                                         </div>
-                                        <h3 class="falls-cell__info__title__cell text-space">{{model_data.name}}</h3>
+                                        <h3 class="falls-cell__info__title__cell" :class="model_data.tag_icon?'text-space':''">{{model_data.name}}</h3>
                                     </div>
                                     <p class="falls-cell__info__date">
                                         <span>{{model_data.start_show_time}} {{model_data.show_time_bottom}}</span>
@@ -243,6 +242,10 @@
                         </div>
                         </van-list>
                     </div>
+                    <van-loading color="rgb(255, 121, 25)" v-show="!finished"/>
+                    <div class="no-more"  v-show="finished">
+                        <span class="no-more__tips">没有更多了</span>
+                    </div>
                 </div>
             </section>
         </main>
@@ -251,7 +254,7 @@
 </template>
 <script>
 import Vue from 'vue'
-import { NavBar, Icon, Search, List } from 'vant'
+import { NavBar, Icon, Search, List, Loading } from 'vant'
 import indexSwiper from './index/IndexSwiper.vue'
 import vipSwiper from './index/VipSwiper.vue'
 import tourSwiper from './index/TourSwiper.vue'
@@ -259,7 +262,7 @@ import moment from 'moment'
 import categorySwiper from './index/CategorySwiper.vue'
 /* import http from '@/util/http' */
 import axios from 'axios'
-Vue.use(NavBar).use(Icon).use(Search).use(List)
+Vue.use(NavBar).use(Icon).use(Search).use(List).use(Loading)
 Vue.filter('dateFilter', (date) => {
   return moment(date * 1000).format('YYYY-MM-DD')
 })
@@ -306,7 +309,7 @@ export default {
         this.finished = true
       }
       this.current++
-      axios.get(`https://api.juooo.com/Show/Search/getShowList?city_id=0&category=&keywords=&venue_id=&start_time=&show_ids=&page=${this.current}&referer_type=index&time=1612691473537&version=6.1.22&referer=2&sign=e06f13ba304c4fa984d9982dc7be5f73`).then((res) => {
+      axios.get(`https://api.juooo.com/Show/Search/getShowList?city_id=0&category=&keywords=&venue_id=&start_time=&show_ids=&page=${this.current}&referer_type=index`).then((res) => {
         setTimeout(() => {
           this.modelList = [...this.modelList, ...res.data.data.list]
           this.loading = false // 取得数据后将loading赋为false，等到下次到底之后再自动变为true
@@ -328,7 +331,7 @@ export default {
     axios.get('https://api.juooo.com/home/index/getFloorShow?city_id=0&version=6.1.22&referer=2').then((res) => {
       this.categoryList = res.data.data[0].list
     })
-    axios.get('https://api.juooo.com/Show/Search/getShowList?city_id=0&category=&keywords=&venue_id=&start_time=&show_ids=&page=1&referer_type=index&time=1612685410919&version=6.1.22&referer=2&sign=23735a2faa34439ec20641340b37a183').then((res) => {
+    axios.get(`https://api.juooo.com/Show/Search/getShowList?city_id=0&category=&keywords=&venue_id=&start_time=&show_ids=&page=${this.current}&referer_type=index`).then((res) => {
       this.modelList = res.data.data.list
       this.total = res.data.data.total // 在第一次加载数据时将total总长度赋值
     })
@@ -336,6 +339,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+
     /* header部分 */
     header{
         width: 100%;
@@ -365,10 +369,16 @@ export default {
             margin-left: 20px;
         }
     }
+    .stiky {
+    position: sticky;
+    top: 0;
+    background: #fff;
+    z-index: 6;
+    }
     /* ========== main主内容 =============== */
     /* banner广告区 */
     .home-banner{
-       padding: 1.37333rem 0.4rem 0;
+       padding: 0.37333rem 0.4rem 0;
     }
     /* 类别与会员 */
     .home-advertion{
@@ -839,8 +849,21 @@ export default {
         }
     }
     /* 为你推荐区 */
+    .van-loading{
+        margin-top: 0.26667rem;
+        margin: 0 auto;
+        width: 0.8rem;
+        height: 0.8rem;
+        z-index: 0;
+        font-size: 0;
+        line-height: 0;
+        position: relative;
+        vertical-align: middle;
+        color: rgb(255, 121, 25);
+    }
     .home-model{
         width: 100%;
+        padding-bottom: 0;
         background: linear-gradient(0deg, #f0f0f0, #f0f0f0, #fefefe);
         .model-block__title{
             padding: 0.26667rem 0.4rem 0.13333rem;
@@ -966,6 +989,15 @@ export default {
                     }
                 }
                 }
+            }
+            .no-more{
+                margin-top: 1.53333rem;
+                line-height: 0.53333rem;
+                text-align: center;
+                color: #ccc;
+                padding-bottom: 0.13333rem;
+                font-size: 12px;
+                border-top: 1px dashed #ccc;
             }
         }
     }

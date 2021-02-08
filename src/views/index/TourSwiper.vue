@@ -22,7 +22,8 @@ export default {
       loop: this.loop, // 开启循环
       pagination: {
         el: '.swiper-pagination',
-        bulletActiveClass: 'vip-bullet-active'
+        bulletClass: 'tour-bullet', // 需设置.my-bullet样式
+        bulletActiveClass: 'tour-bullet-active'
       },
       autoplay: {
         delay: 2000,
@@ -33,12 +34,26 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
     .tour{
         width: 100%;
         padding-bottom: 0.66667rem;
     }
-    .vip-bullet-active{
+    .tour-bullet{
+        display: inline-block;
+        width: 0.13333rem;;
+        height: 0.13333rem;;
+        background: #ff6743;
+        border-radius: 50%;
+        position: relative;
+        margin: 0 0.06667rem;
+        top: 0.3rem;
+        opacity: .3;
+     }
+    .tour-bullet-active{
+        opacity: 1;
+        width: 0.34667rem;
+        border-radius: 0.06667rem;
         background-color: #ff6743;
     }
 </style>

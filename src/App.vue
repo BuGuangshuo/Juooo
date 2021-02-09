@@ -5,7 +5,7 @@
           <router-view></router-view>
       </section>
       <!-- Loading -->
-      <div class="loading_bg">
+      <div class="loading_bg" v-show="false">
           <div class="loading">
             <img src="/static/img/loading.65b0197.svg" class="loading__pic">
           </div>
@@ -39,6 +39,7 @@ export default {
       display: block;
       text-decoration: none;
       color: #666;
+      outline: none;
     }
     section {
       padding-bottom: 50px;
@@ -69,7 +70,17 @@ export default {
     .c_ff6{
       color: #ff6743!important;
     }
-
+    .title{
+      height: 1.17333rem;
+      width: 100%;
+      background-color: white;
+      font-size: 0.48rem;
+      color: #232323;
+      position: relative;
+      border-bottom: 1px solid #ebebeb;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+    }
     /* Loading */
     .loading_bg{
       position: fixed;

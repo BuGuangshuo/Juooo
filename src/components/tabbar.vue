@@ -7,7 +7,7 @@
                     <span>首页</span>
                     </li>
                 </router-link>
-                <router-link to="/theatre" custom v-slot="{ navigate, isActive }">
+                <router-link to="/theatre/theatreList" custom v-slot="{ navigate, isActive }">
                     <li @click="navigate" :class="isActive ? 'kerwinActive' : ''">
                     <i class="iconfont icon-yingyuan1"></i>
                     <span>影院</span>

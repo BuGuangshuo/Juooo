@@ -17,9 +17,9 @@
                         <div class="theater-list">
                             <ul class="theater-ul">
                                 <li v-for="theaterData in theaterList" :key="theaterData.id">
-                                    <div class="theater-info-shows">
+                                    <div class="theater-info-shows" >
                                         <div class="theater-info">
-                                            <a href="#" class="theater-pic-name-count">
+                                            <a href="javascript:;" class="theater-pic-name-count" @click="handleClick(theaterData.vid,theaterData.id)" >
                                                 <div class="theater-pic-wrap">
                                                     <img :src="theaterData.pic" alt="" class="theater-pic">
                                                 </div>
@@ -69,6 +69,11 @@ export default {
     return {
       theaterList: [],
       theaterHeight: '0px'
+    }
+  },
+  methods: {
+    handleClick (id, id2) {
+      this.$router.push(`/theatre/detail/${id}/${id2}`)
     }
   },
   mounted () {

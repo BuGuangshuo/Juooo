@@ -6,7 +6,6 @@ import Theatre from '../views/Theatre.vue'
 import Eticket from '../views/Eticket.vue'
 import Center from '../views/Center.vue'
 import Ticket from '../views/Ticket.vue'
-import TheatreList from '../views/theatre/TheatreList.vue'
 import Detail from '../views/theatre/Detail.vue'
 import Login from '../views/Login.vue'
 
@@ -22,22 +21,12 @@ const routes = [
     component: SelectCity
   },
   {
-    path: '/theatre',
-    component: Theatre,
-    children: [
-      {
-        path: '/theatre/theatreList',
-        component: TheatreList
-      },
-      {
-        path: '/theatre/detail',
-        component: Detail
-      },
-      {
-        path: '/theatre',
-        redirect: '/theatre/theatreList'
-      }
-    ]
+    path: '/theatre/theatreList',
+    component: Theatre
+  },
+  {
+    path: '/theatre/detail/:id/:id2',
+    component: Detail
   },
   {
     path: '/eticket',
@@ -48,8 +37,8 @@ const routes = [
     component: Center
   },
   {
-    path: '/ticket',
-    component: Ticket
+    path: '/ticket/:id', // 地址命名动态方式 :**id
+    component: Ticket // 单文件
   },
   {
     path: '/login',
@@ -62,7 +51,6 @@ const routes = [
 ]
 
 const router = new VueRouter({
-  mode: 'hash',
   routes
 })
 export default router

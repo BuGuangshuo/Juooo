@@ -43,7 +43,7 @@
                 </div>
                 <!-- 会员折扣区 -->
                 <div class="vip-ahead">
-                    <a href="#">
+                    <a href="javascript:;">
                         <div class="vip-ahead__advert">
                             <div class="vip-ahead__advert__left">
                                 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAkCAMAAADM4ogkAAABd1BMVEUAAADvz6743L/22rz/6M/43cDpx6L/6M7w0bD43sHqx6T848ny1LTryKX33L//6M/z1rfryab017nsyqf/6M/538P+587tzKn95cv95cv/5872273uzav+5s3oxaD+5s3vz67pxqH95cr95crtzKnx0rLqx6T+5s3vzq3ryabw0bDtzKnx0rLx0rLoxJ/oxJ/95cz12bvsy6j12bv/6M/sy6jtzKrtzKruzq3oxaDoxJ/uzq3w0bDpx6Ly1LTryKX01rf/6M9HJwj95Mr017jtzKnsyqfryKX+5s3+5cz33L/227343sH12bv538P64cXy1LTuzavx0rLw0bDvz6774sfpxqBIKAnpx6KPclTix6uPclVXNxjmy7DKro+1mHyTdljw1LjlzLLfw6bYvaLNspSqi2uXeFp8XkB3WTtsTS5gQCJfPyBZOhtLKwzmzbPqy6vgxqjUuJrIqIjDpoi5noKylXaihWeegmWOcFKQcFCDY0RnSCn+eriUAAAAQXRSTlMA/g4J+hv5A/n48/Lq6uTh4eDS0s7JxrGwqI2Kh21qaVtbT0pCNzcwJBwUBfXz6uTNyMjBv7+kmHd2cGpNTCwrAhUStP0AAAG1SURBVDjLjdAHU9tAEAXgZ8uF3ktooff03hOtSXMhDoYowhjTAoQQ0nt+PLuyZOmwJPhmpNvZfXM7c7DND3XF9BqxruEkFNEePcANDV7n9EB98BjTQ4x7FreGBVujcPTrofphm469CPSJv9g0LMkrLwNt0Rb/e55ADKWClagkxzBYvNHpvieiox9S/Sa2lioXi1Qs7qRSjXF5whXH4kce70u1ecTV3krZNMk0d7jRB4y9csmVB1JscPEhw8UqrVZG4+hedP2RhXxuG0TGO+lwsDLqRn3W9Ys4kM5m9/ncqLS+2KN6tKRdZWKl9Los3kwrWjCQcUmCvub+y+KMagDa1VzVNrHvP2VxTnVdA+Y6Fhx5gzO7a0SHhQVFRxQs3lZtyENyzlhXc21xWB415W0HZDHziqYZ2CYvLFX8I3H4ecnr4iSqHtQVLHvEjG8Fr7oJeIxElsUusb/LXpERKO5EAtzHCYOvfQ2ixq2nPm6j1nxvba43CR/atWcn3NTga65TzXVGEWC2/blH+ywCPW52c80zCDHV4OQaphDqYeKtJTGBU4y+EYlRnOquBM/jDO5dvuSTOwZ3nQUiwxrMfwAAAABJRU5ErkJggg==" alt="" class="vip-ahead__advert__left__icon">
@@ -57,16 +57,16 @@
                     </a>
                     <div class="vip-ahead__swiper">
                         <vip-swiper :key="vipList.length">
-                            <div class="swiper-slide" v-for="vip_data in vipList" :key="vip_data.schedular_id">
+                            <div class="swiper-slide" v-for="vip_data in vipList" :key="vip_data.schedular_id" @click="handleClick(vip_data.schedular_id)">
                                 <div class="vip-ahead__list">
                                     <div class="vip-ahead__list__item">
-                                        <a href="" class="vip-ahead__list__item__wrap">
+                                        <a href="javascript:;" class="vip-ahead__list__item__wrap">
                                             <img :src="vip_data.pic" class="vip-ahead__list__item__wrap__pic">
                                         </a>
                                     </div>
 
                                      <div class="vip-ahead__list__info">
-                                         <a href="">
+                                         <a href="javascript:;" >
                                              <h3 class="vip-ahead__list__info__title">
                                                  {{vip_data.schedular_name}}
                                              </h3>
@@ -76,7 +76,7 @@
                                              <span class="vip-ahead__list__info__tip__text">折起</span>
                                          </p>
                                      </div>
-                                     <a href="#" class="vip-ahead__list__lab">
+                                     <a href="javascript:;" class="vip-ahead__list__lab">
                                          立即抢购
                                      </a>
                                 </div>
@@ -157,10 +157,10 @@
                         </a>
                     </div>
                     <div class="category-block__list__row">
-                        <div class="row--bg" style="background: rgb(171, 149, 119)">
-                            <a href="#" class="category-block__list__row__wrap">
+                        <div class="row--bg" style="background: rgb(171, 149, 119)" v-for="(firstData,index) in categoryFirstList" :key="index" @click="handleClick(firstData.sche_id)">
+                            <a href="javascript:;" class="category-block__list__row__wrap">
                                 <div class="category-block__list__row__item">
-                                    <img src="https://image.juooo.com//group1/M00/00/1E/rBAAFGAT7MWAKLBpAACVe_3u9Ig797.jpg" class="img">
+                                    <img :src="firstData.pic" class="img">
                                     <div class="juooo_sponsor">
                                         <span class="icon-img icon-destine"></span>
                                         <span class="logo_i"></span>
@@ -168,25 +168,22 @@
                                 </div>
                                 <div class="category-block__list__row__info">
                                     <p class="category-block__list__row__info__date">
-                                        <strong>2021.04.19 </strong>
-                                        <span>周日 19:30</span>
+                                        <strong>{{firstData.show_time|firstFilter}} </strong>
+                                        <span>{{firstData.week}} 19:30</span>
                                     </p>
-                                    <h3 class="category-block__list__row__info__title text-double">武汉人艺话剧《同船过渡》-舟山站</h3>
-                                    <p class="category-block__list__row__info__venue text-single">
-              舟山 |
-              舟山普陀大剧院（大剧场）
-            </p>
+                                    <h3 class="category-block__list__row__info__title text-double">{{firstData.schedular_name}}</h3>
+                                    <p class="category-block__list__row__info__venue text-single">{{firstData.city_name}} | {{firstData.venue_name}}</p>
                                 </div>
                             </a>
                         </div>
                         <div class="category-block__list__column">
                             <category-swiper :key="categoryList.length">
-                                <div class="swiper-slide" style="width: 118.562px; margin-right: 8px;" v-for="category_data in categoryList" :key="category_data.sche_id">
-                                    <a href="#" class="category-block__list__column__wrap">
+                                <div class="swiper-slide" style="width: 118.562px; margin-right: 8px;" v-for="category_data in categoryList" :key="category_data.sche_id" @click="handleClick(category_data.sche_id)">
+                                    <a href="javascript:;" class="category-block__list__column__wrap">
                                         <div class="category-block__list__column__item">
                                             <img :src="category_data.pic" alt="">
-                                            <div class="juooo_sponsor" v-html="category_data.ico">
-                                                {{category_data.ico}}
+                                            <div class="juooo_sponsor" >
+                                                <span v-html="category_data.ico"></span>
                                             </div>
                                         </div>
                                         <h3 class="category-block__list__column__title text-double">{{category_data.schedular_name}}</h3>
@@ -211,7 +208,7 @@
                             :finished="finished" loading-text=""
                             @load="onLoad" :immediate-check="false"
                         >
-                        <div class="show-model__item" v-for="(model_data,index) in modelList" :key="index">
+                        <div class="show-model__item" v-for="(model_data,index) in modelList" :key="index" @click="handleClick(model_data.schedular_id)">
                             <div>
                                 <div class="falls-cell">
                                     <div class="falls-cell__image">
@@ -233,7 +230,7 @@
                                         <span class="falls-cell__info__price__tip">起</span>
                                     </p>
                                     <p class="falls-cell__info__support">
-                                        <span class="falls-cell__info__support--label" v-for="desc_data in model_data.support_desc" :key="desc_data">{{desc_data}}</span>
+                                        <span class="falls-cell__info__support--label" v-for="(desc_data,index) in model_data.support_desc" :key="index">{{desc_data}}</span>
                                     </p>
                                 </div>
                                 </div>
@@ -269,6 +266,9 @@ Vue.filter('dateFilter', (date) => {
 Vue.filter('cityFilter', (citys) => {
   return citys.map((item) => item.name).join(' | ')
 })
+Vue.filter('firstFilter', (firstDate) => {
+  return moment(firstDate * 1000).format('YYYY-MM-DD')
+})
 /* Vue.filter('icoFilter',(ico)=>{
     console.log(ico.replace(/&lt;/g,'<'))
     return ico.replace(/&lt;/g,'<')
@@ -287,6 +287,7 @@ export default {
       labelList: [],
       vipList: [],
       tourList: [],
+      categoryFirstList: [],
       categoryList: [],
       modelList: [],
       descList: [],
@@ -315,6 +316,9 @@ export default {
           this.loading = false // 取得数据后将loading赋为false，等到下次到底之后再自动变为true
         }, 0)
       })
+    },
+    handleClick (id) {
+      this.$router.push(`/ticket/${id}`)
     }
   },
   mounted () {
@@ -330,6 +334,8 @@ export default {
     })
     axios.get('https://api.juooo.com/home/index/getFloorShow?city_id=0&version=6.1.22&referer=2').then((res) => {
       this.categoryList = res.data.data[0].list
+      this.categoryFirstList.push(res.data.data[0].list[0])
+      console.log(this.categoryFirstList)
     })
     axios.get(`https://api.juooo.com/Show/Search/getShowList?city_id=0&category=&keywords=&venue_id=&start_time=&show_ids=&page=${this.current}&referer_type=index`).then((res) => {
       this.modelList = res.data.data.list
@@ -929,7 +935,7 @@ export default {
                             .falls-cell__info__title__sponsor{
                                 position: absolute;
                                 left: 0;
-                                top: -17px;
+                                top: 0;
                                 display: block;
                                 width: 0.89333rem;
                                 height: 0.45333rem;

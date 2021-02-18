@@ -41,15 +41,30 @@ export default {
       color: #666;
       outline: none;
     }
+    a:link, a:visited, a:hover, a:active {
+      text-decoration: none;
+      outline: none;
+  }
     section {
       padding-bottom: 50px;
     }
     img{
     border: none;
-    border-color: transparent;
-    vertical-align: middle;
-    width: 100%;
-    height: 100%;
+      border-color: transparent;
+      vertical-align: middle;
+      width: 100%;
+      height: 100%;
+    }
+    .ju-image--fill{
+      width: 100%;
+      height: 100%;
+    }
+    input{
+      background: transparent;
+      border: none;
+      outline: none;
+      font-weight: normal;
+      font: inherit;
     }
     .text-double {
     overflow: hidden;

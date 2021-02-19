@@ -3,7 +3,7 @@
     <div class="login">
         <div class="head">
             <div class="login__title">
-                <img src="/static/img/Left.png" class="back_img">
+                <img src="/static/img/Left.png" class="back_img" @click="$router.back()">
             </div>
         </div>
         <div class="body">
@@ -42,6 +42,16 @@
         </div>
     </div>
 </template>
+<script>
+export default {
+  mounted () {
+    this.$store.commit('hide')
+  },
+  destroyed () {
+    this.$store.commit('show')
+  }
+}
+</script>
 <style lang="scss" scoped>
     .login{
         width: 100%;

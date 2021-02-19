@@ -11,6 +11,7 @@
                     <div class="brief__primary">
                         <div class="brief__primary__fg">
                             <div class="brief__primary__fg__title">
+                                <img src="/static/img/LeftWhite.png" class="backImg" @click="$router.back()">
                                 <span class="brief__primary__fg__title__text">演出详情</span>
                             </div>
                             <div class="brief__primary__fg__content">
@@ -111,9 +112,13 @@ export default {
     }
   },
   mounted () {
+    this.$store.commit('hide')
     axios.get(`https://api.juooo.com/Schedule/Schedule/getScheduleInfo?schedular_id=${this.$route.params.id}&version=6.1.22&referer=2`).then((res) => {
       this.info = res.data.data.static_data
     })
+  },
+  destroyed () {
+    this.$store.commit('show')
   }
 }
 </script>
@@ -162,6 +167,14 @@ export default {
     .brief__primary__fg__title{
         position: relative;
         height: 1.18667rem;
+    }
+    .backImg{
+        position: absolute;
+        width: .55rem;
+        height: .55rem;
+        top: 0.3rem;
+        left: 0.26rem;
+        z-index: 10;
     }
     .brief__primary__fg__title__text{
         text-align: center;

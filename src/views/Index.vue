@@ -10,7 +10,7 @@
             @click-right="onClickRight"
             >
                 <template #left>
-                    {{$store.state.cityName}} <i class="iconfont icon-dingweiweizhi"></i><span class="city">全国</span>
+                    <i class="iconfont icon-dingweiweizhi"></i><span class="city text-single">{{$store.state.cityName}}</span>
                 </template>
                 <template #title>
                     <van-search v-model="value" placeholder="请输入搜索关键词" />
@@ -299,7 +299,7 @@ export default {
   },
   methods: {
     onClickLeft () {
-      console.log('left')
+      this.$router.push('/selectCity')
     },
     onClickRight () {
       console.log('right')
@@ -310,7 +310,7 @@ export default {
         this.finished = true
       }
       this.current++
-      axios.get(`https://api.juooo.com/Show/Search/getShowList?city_id=0&category=&keywords=&venue_id=&start_time=&show_ids=&page=${this.current}&referer_type=index`).then((res) => {
+      axios.get(`https://api.juooo.com/Show/Search/getShowList?city_id=${this.$store.state.cityId}&category=&keywords=&venue_id=&start_time=&show_ids=&page=${this.current}&referer_type=index`).then((res) => {
         setTimeout(() => {
           this.modelList = [...this.modelList, ...res.data.data.list]
           this.loading = false // 取得数据后将loading赋为false，等到下次到底之后再自动变为true
@@ -322,7 +322,7 @@ export default {
     }
   },
   mounted () {
-    axios.get('https://api.juooo.com/home/index/getClassifyHome?city_id=0&abbreviation=&version=6.1.22&referer=2').then((res) => {
+    axios.get(`https://api.juooo.com/home/index/getClassifyHome?city_id=${this.$store.state.cityId}&abbreviation=${this.$store.state.abbreviation}&version=6.1.22&referer=2`).then((res) => {
       this.bannerlist = res.data.data.slide_list
       this.labelList = res.data.data.classify_list
     })
@@ -335,9 +335,8 @@ export default {
     axios.get('https://api.juooo.com/home/index/getFloorShow?city_id=0&version=6.1.22&referer=2').then((res) => {
       this.categoryList = res.data.data[0].list
       this.categoryFirstList.push(res.data.data[0].list[0])
-      console.log(this.categoryFirstList)
     })
-    axios.get(`https://api.juooo.com/Show/Search/getShowList?city_id=0&category=&keywords=&venue_id=&start_time=&show_ids=&page=${this.current}&referer_type=index`).then((res) => {
+    axios.get(`https://api.juooo.com/Show/Search/getShowList?city_id=${this.$store.state.cityId}&category=&keywords=&venue_id=&start_time=&show_ids=&page=1&referer_type=index`).then((res) => {
       this.modelList = res.data.data.list
       this.total = res.data.data.total // 在第一次加载数据时将total总长度赋值
     })
@@ -345,7 +344,6 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-
     /* header部分 */
     header{
         width: 100%;
@@ -362,10 +360,12 @@ export default {
             font-size:25px
         }
         .city{
+            min-width: 0.93333rem;
+            max-width: 1.86667rem;
             font-size: 0.4rem;
-            margin-left: 0.08rem;
-            font-weight: 700;
             color: #232323;
+            font-weight: 700;
+            margin-left: 0.08rem;
         }
         .van-search{
             height: 48px;

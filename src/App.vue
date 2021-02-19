@@ -1,6 +1,6 @@
 <template>
   <div>
-      <tabbar></tabbar>
+      <tabbar v-show="isTabbarShow"></tabbar>
       <section>
           <router-view></router-view>
       </section>
@@ -15,9 +15,13 @@
 <script>
 import './assets/iconfont/iconfont.css'
 import tabbar from './components/tabbar'
+import { mapState } from 'vuex' // mapState 函数作用是  映射(切割)想要的状态
 export default {
   components: {
     tabbar
+  },
+  computed: {
+    ...mapState(['isTabbarShow']) // ['']里名必须在状态state中存在
   }
 }
 </script>

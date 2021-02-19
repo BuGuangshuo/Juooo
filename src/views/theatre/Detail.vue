@@ -4,7 +4,9 @@
         <div class="load-more theater-detail">
             <div>
                 <div class="theater-detail__header">
-                    <div class="theater-detail__header__title"></div>
+                    <div class="theater-detail__header__title">
+                        <img src="/static/img/LeftWhite.png" class="backImg" @click="$router.back()">
+                    </div>
                     <div class="theater-detail__header__theater">
                         <div class="theater-detail__header__theater__detail">
                             <div class="theater-detail__header__theater__detail__top">
@@ -79,12 +81,16 @@ export default {
     }
   },
   mounted () {
+    this.$store.commit('hide')
     axios.get(`https://api.juooo.com/Show/Search/getShowList?page=1&venue_id=${this.$route.params.id}`).then((res) => {
       this.detailList = res.data.data.list
     })
     axios.get(`https://api.juooo.com/theatre/index/getTheatreInfo?theatre_id=${this.$route.params.id2}&longitude=&latitude=&version=6.1.22&referer=2`).then((res) => {
       this.theatreList = res.data.data
     })
+  },
+  destroyed () {
+    this.$store.commit('show')
   }
 }
 </script>
@@ -112,6 +118,13 @@ export default {
         height: 1.17333rem;
         width: 100%;
         position: relative;
+    }
+    .backImg{
+        position: absolute;
+        width: .55rem;
+        height: .55rem;
+        top: 0.3rem;
+        left: 0.26rem;
     }
     .theater-detail__header__theater{
         height: 3.70667rem;

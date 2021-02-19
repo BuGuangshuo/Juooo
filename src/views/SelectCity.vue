@@ -4,7 +4,7 @@
             <span class="head_icon back_icon"></span>
             <h3 class="title text-single">城市选择</h3>
         </header>
-        <van-index-bar :index-list="computedCityList()">
+        <van-index-bar :index-list="computedCityList">
             <div v-for="(data,index) in cityList" :key="index">     <!-- 嵌套循环 -->
                 <van-index-anchor :index="data.id" />             <!-- 城市首字母 -->
                 <van-cell :title="item.name" v-for="(item,index) in data.list" :key="index" @click="handleClick(item)"/><!-- 城市名 -->
@@ -21,8 +21,7 @@ Vue.use(IndexBar).use(IndexAnchor).use(Cell)
 export default {
   data () {
     return {
-      cityList: null,
-      cityIndex: []
+      cityList: null
     }
   },
   methods: {
@@ -32,12 +31,15 @@ export default {
       this.changeCityId(item.id)
       this.changeCityAbbreviation(item.Abbreviation)
       this.$router.back()
-    },
+    }
+  },
+  computed: {
     computedCityList () {
+      var cityIndex = []
       for (var i in this.cityList) {
-        this.cityIndex.push(i) // 计算属性 只遍历存在城市的数组
+        cityIndex.push(i) // 计算属性 只遍历存在城市的数组
       }
-      return this.cityIndex
+      return cityIndex
     }
   },
   mounted () {

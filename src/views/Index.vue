@@ -13,7 +13,10 @@
                     <i class="iconfont icon-dingweiweizhi"></i><span class="city text-single">{{$store.state.cityName}}</span>
                 </template>
                 <template #title>
-                    <van-search v-model="value" placeholder="请输入搜索关键词" @click="$router.push('/search')"/>
+                    <div class="head-search" @click="$router.push('/search')">
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAMAAAC7IEhfAAAAXVBMVEUAAACzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7MU5mdkAAAAHnRSTlMA+fES5d1bGgytwpCJIDy9p6Z+eWMpCKRv1sjGlU+Yw8sxAAAA/0lEQVQ4y+2TWXKDMBBENVrAYjHGGPD67n/MVEhiKiORcv7dX6Lr0UMLybz1D+2KQxAI8eT+wqbB8iPb7Da58QLgq9iFZbHf4Pb2M2dc1u3RgjzyeRa68vnoIkguc7rA/MtpwGcqDdApq4d7ui8WW2rPI9ozBTRG6wyD9g4wJqATKu0FvEl1Q7S1vqvm6N4QM2ANbQJ2GXAGXTsQMmCVfmOENt1c4aq9ExzNK6azWF1wCrkxDcS0c5+5BB4a/QNtmTu3Av1unVsDtcnpIeDP7iv/FAAo8nfBA3I71HMlgK03SXcXnupLU2ySphyWMLke2+9TKmZTrl27FhLNWy/oA9CZFFU7WU6aAAAAAElFTkSuQmCC" class="head-search__img">
+                        <span class="head-search__lab">搜索热门演出</span>
+                    </div>
                 </template>
                 <template #right>
                    <i class="iconfont icon-rili"></i>
@@ -364,25 +367,40 @@ export default {
         z-index: 10;
         .icon-dingweiweizhi{
             color:#ff723f;
-            font-size:22px
+            font-size:0.53333rem
         }
         .icon-rili{
-            font-size:25px
+            font-size:0.53333rem
         }
         .city{
             min-width: 0.93333rem;
-            max-width: 1.86667rem;
+            max-width: 1.6rem;
             font-size: 0.4rem;
             color: #232323;
             font-weight: 700;
             margin-left: 0.08rem;
         }
-        .van-search{
-            height: 48px;
+        .head-search{
+            height: 0.74667rem;
+            width: 5.61rem;
+            display: flex;
+            flex: 1;
+            align-items: center;
+            background: #f5f5f5;
+            border: 1px solid #ebebeb;
+            border-radius: 0.4rem;
+            margin-left: 0.33333rem;
+            margin-right: 0.4rem;
         }
-        .van-search__content{
-            border-radius: 23px;
-            margin-left: 20px;
+        .head-search__img{
+            width: 0.53333rem;
+            height: 0.53333rem;
+            margin-left: 0.29333rem;
+            margin-right: 0.13333rem;
+        }
+        .head-search__lab{
+            font-size: 0.34667rem;
+            color: #B3B3B3;
         }
     }
     .stiky {

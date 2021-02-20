@@ -16,10 +16,10 @@
                     <div class="content">
                         <div class="theater-list">
                             <ul class="theater-ul">
-                                <li v-for="theaterData in theaterList" :key="theaterData.id">
+                                <li v-for="theaterData in theaterList" :key="theaterData.id" @click="handleClick(theaterData.vid,theaterData.id)" >
                                     <div class="theater-info-shows" >
                                         <div class="theater-info">
-                                            <a href="javascript:;" class="theater-pic-name-count" @click="handleClick(theaterData.vid,theaterData.id)" >
+                                            <a href="javascript:;" class="theater-pic-name-count">
                                                 <div class="theater-pic-wrap">
                                                     <img :src="theaterData.pic" class="theater-pic">
                                                 </div>
@@ -85,7 +85,6 @@ export default {
   },
   mounted () {
     axios.get('https://api.juooo.com/theatre/index/getTheatreList?page=1&version=6.1.22&referer=2').then((res) => {
-      console.log(res.data.code)
       if (res.data.code === '200') {
         this.loadingShow = false
         this.theaterList = res.data.data.theatre_list

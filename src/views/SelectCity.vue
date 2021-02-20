@@ -4,6 +4,13 @@
             <span class="head_icon back_icon"></span>
             <h3 class="title text-single">城市选择</h3>
         </header>
+        <div class="city-block__con">
+          <span class="city-block__con__tip">热门城市</span>
+          <ul class="city-block__con__wrap">
+            <li class="city-block__con__item hots--item" @click="handleAll">全国</li>
+            <li class="city-block__con__item hots--item" v-for="hotData in hotCity" :key="hotData.id" @click="handleClick(hotData)">{{hotData.name}}</li>
+          </ul>
+        </div>
         <van-index-bar :index-list="computedCityList">
             <div v-for="(data,index) in cityList" :key="index">     <!-- 嵌套循环 -->
                 <van-index-anchor :index="data.id" />             <!-- 城市首字母 -->
@@ -21,11 +28,17 @@ Vue.use(IndexBar).use(IndexAnchor).use(Cell)
 export default {
   data () {
     return {
-      cityList: null
+      cityList: null,
+      hotCity: []
     }
   },
   methods: {
     ...mapMutations(['changeCityName', 'changeCityId', 'changeCityAbbreviation']),
+    handleAll () {
+      this.changeCityId(0)
+      this.changeCityName('全国')
+      this.$router.back()
+    },
     handleClick (item) {
       this.changeCityName(item.name)
       this.changeCityId(item.id)
@@ -47,6 +60,9 @@ export default {
     axios.get('https://api.juooo.com/city/city/getSortedCityList?version=6.1.22&referer=2').then((res) => {
       this.cityList = res.data.data
     })
+    axios.get('https://api.juooo.com/city/city/getHotCityList?version=6.1.22&referer=2').then((res) => {
+      this.hotCity = res.data.data.hot_city_List
+    })
   },
   destroyed () {
     this.$store.commit('show')
@@ -58,6 +74,38 @@ export default {
         width: 100%;
         height: 100%;
         background-color: #f5f5f5;
+        .city-block__con{
+            padding: 1.34667rem 1.01333rem 0 0.4rem;
+        }
+        .city-block__con__tip{
+          font-size: 0.32rem;
+          font-weight: normal;
+          color: #999;
+          display: flex;
+          height: 0.70667rem;
+          align-items: center;
+          margin-bottom: 0.13333rem;
+        }
+        .city-block__con__wrap{
+            display: flex;
+            flex-wrap: wrap;
+            .hots--item{
+              margin-bottom: 0.2rem;
+            }
+        }
+        .city-block__con__item{
+          width: 2.5999999rem;
+          height: 0.93333rem;
+          border: solid 1px #ebebeb;
+          background-color: #fefefe;
+          border-radius: 0.08rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 0.34667rem;
+          color: #232323;
+          margin-right: 0.2rem;
+        }
     }
     .head_nav{
         position: fixed;
@@ -88,8 +136,5 @@ export default {
             color: #232323;
             padding: 0 1.33333rem;
         }
-    }
-    .van-index-bar{
-        margin-top:1rem;
     }
 </style>

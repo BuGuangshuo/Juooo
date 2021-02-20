@@ -13,7 +13,7 @@
                     <i class="iconfont icon-dingweiweizhi"></i><span class="city text-single">{{$store.state.cityName}}</span>
                 </template>
                 <template #title>
-                    <van-search v-model="value" placeholder="请输入搜索关键词" />
+                    <van-search v-model="value" placeholder="请输入搜索关键词" @click="$router.push('/search')"/>
                 </template>
                 <template #right>
                    <i class="iconfont icon-rili"></i>
@@ -55,7 +55,7 @@
                             </div>
                         </div>
                     </a>
-                    <div class="vip-ahead__swiper">
+                    <div class="vip-ahead__swiper" v-show="vipList.length">
                         <vip-swiper :key="vipList.length">
                             <div class="swiper-slide" v-for="vip_data in vipList" :key="vip_data.schedular_id" @click="handleClick(vip_data.schedular_id)">
                                 <div class="vip-ahead__list">
@@ -246,6 +246,12 @@
                 </div>
             </section>
         </main>
+        <!-- Loading -->
+        <div class="loading_bg" v-show="loadingShow">
+            <div class="loading">
+                <img src="/static/img/loading.65b0197.svg" class="loading__pic">
+            </div>
+        </div>
     </div>
 
 </template>
@@ -283,6 +289,7 @@ export default {
   data () {
     return {
       value: '',
+      loadingShow: true,
       bannerlist: [],
       labelList: [],
       vipList: [],
@@ -323,10 +330,13 @@ export default {
   },
   mounted () {
     axios.get(`https://api.juooo.com/home/index/getClassifyHome?city_id=${this.$store.state.cityId}&abbreviation=${this.$store.state.abbreviation}&version=6.1.22&referer=2`).then((res) => {
-      this.bannerlist = res.data.data.slide_list
-      this.labelList = res.data.data.classify_list
+      if (res.data.code === '200') {
+        this.loadingShow = false
+        this.bannerlist = res.data.data.slide_list
+        this.labelList = res.data.data.classify_list
+      }
     })
-    axios.get('https://api.juooo.com/vip/index/getVipHomeSchedular?city_id=0&version=6.1.22&referer=2').then((res) => {
+    axios.get(`https://api.juooo.com/vip/index/getVipHomeSchedular?city_id=${this.$store.state.cityId}&version=6.1.22&referer=2`).then((res) => {
       this.vipList = res.data.data.allList
     })
     axios.get('https://api.juooo.com/show/tour/getList?version=6.1.22&referer=2').then((res) => {
@@ -1006,5 +1016,27 @@ export default {
                 border-top: 1px dashed #ccc;
             }
         }
+    }
+    /* Loading */
+    .loading_bg{
+      position: fixed;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 200;
+      overflow: hidden;
+      background-color: #FFFFFF;
+      .loading{
+        display: flex;
+        width: 100%;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+        .loading__pic{
+          width: 1.06667rem;
+          height: 1.06667rem;
+        }
+      }
     }
 </style>

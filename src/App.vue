@@ -4,12 +4,6 @@
       <section>
           <router-view></router-view>
       </section>
-      <!-- Loading -->
-      <div class="loading_bg" v-show="false">
-          <div class="loading">
-            <img src="/static/img/loading.65b0197.svg" class="loading__pic">
-          </div>
-      </div>
   </div>
 </template>
 <script>
@@ -70,6 +64,9 @@ export default {
       font-weight: normal;
       font: inherit;
     }
+    input[type=search]::-webkit-search-cancel-button{
+    -webkit-appearance: none;
+}
     .text-double {
     overflow: hidden;
     text-overflow: ellipsis;
@@ -100,26 +97,5 @@ export default {
       -webkit-box-sizing: border-box;
       box-sizing: border-box;
     }
-    /* Loading */
-    .loading_bg{
-      position: fixed;
-      left: 0;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      z-index: 200;
-      overflow: hidden;
-      background-color: #FFFFFF;
-      .loading{
-        display: flex;
-        width: 100%;
-        height: 100%;
-        justify-content: center;
-        align-items: center;
-        .loading__pic{
-          width: 1.06667rem;
-          height: 1.06667rem;
-        }
-      }
-    }
+
 </style>

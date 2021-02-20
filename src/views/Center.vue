@@ -3,12 +3,12 @@
     <div class="mine">
         <div class="mine__body">
             <div class="mine-info mine-info">
-                <div class="mine-info__icon">
+                <div class="mine-info__icon" @click="$router.push('/login')">
                     <a href="#">
                         <i class="iconfont icon-shezhi"></i>
                     </a>
                 </div>
-                <div class="mine-info__main">
+                <div class="mine-info__main" @click="$router.push('/login')">
                     <div class="mine-info__main__head">
                         <div class="mine-info__main__head__pic mine-info__main__head__pic--no">
                             <img src="/static/img/logo-user.8413cbf.png" alt="">
@@ -46,11 +46,11 @@
                     </div>
                 </div>
             </div>
-            <a href="#" class="mine-vip">
+            <a href="#" class="mine-vip" @click="$router.push('/login')">
                     <img src="/static/img/ad.411f5e6.png" alt="" class="mine-vip__pic">
             </a>
             <div class="mine-setting">
-                <ul class="mine-setting__list">
+                <ul class="mine-setting__list" @click="$router.push('/login')">
                     <li class="mine-setting__list__item">
                         <div class="mine-setting__list__item--link">
                             <i class="icon icon-order"></i>
@@ -75,7 +75,7 @@
                         </div>
                     </li>
                 </ul>
-                <ul class="mine-setting__list">
+                <ul class="mine-setting__list" @click="$router.push('/login')">
                     <li class="mine-setting__list__item">
                         <div class="mine-setting__list__item--link">
                             <i class="icon icon-people"></i>
@@ -103,11 +103,24 @@
                 </ul>
             </div>
         </div>
+        <!-- Loading -->
+        <!-- <div class="loading_bg" v-show="loadingShow?'true':'false'">
+            <div class="loading">
+                <img src="/static/img/loading.65b0197.svg" class="loading__pic">
+            </div>
+        </div> -->
     </div>
 </template>
 <script>
 export default {
-
+  data () {
+    return {
+      loadingShow: true
+    }
+  },
+  mounted () {
+    this.loadingShow = false
+  }
 }
 </script>
 <style lang="scss" scoped>
@@ -291,5 +304,27 @@ export default {
                 }
             }
             }
+        }
+    /* Loading */
+        .loading_bg{
+        position: fixed;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 200;
+        overflow: hidden;
+        background-color: #FFFFFF;
+        .loading{
+            display: flex;
+            width: 100%;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+            .loading__pic{
+            width: 1.06667rem;
+            height: 1.06667rem;
+            }
+        }
         }
 </style>

@@ -21,15 +21,15 @@
                                         <div class="theater-info">
                                             <a href="javascript:;" class="theater-pic-name-count" @click="handleClick(theaterData.vid,theaterData.id)" >
                                                 <div class="theater-pic-wrap">
-                                                    <img :src="theaterData.pic" alt="" class="theater-pic">
+                                                    <img :src="theaterData.pic" class="theater-pic">
                                                 </div>
                                                 <div class="theater-name-count-wrap">
                                                     <p class="theater-name">{{theaterData.name}}</p>
                                                     <p class="theater-count">{{theaterData.count}}场在售演出</p>
                                                 </div>
                                             </a>
-                                            <a href="#" class="theater-link">
-                                                <img src="/static/img/more.2ce7873.png" alt="" class="theater-more-btn">
+                                            <a href="javascript:;" class="theater-link">
+                                                <img src="/static/img/more.2ce7873.png" class="theater-more-btn">
                                             </a>
                                         </div>
                                         <div class="theater-shows">
@@ -40,7 +40,7 @@
                                                             <p class="show-date">{{showData.show_time}}</p>
                                                             <span class="dot"></span>
                                                         </div>
-                                                        <a class="theater-show-pic">
+                                                        <a class="theater-show-pic" href="javascript:;">
                                                             <img :src="showData.pic" class="show-pic">
                                                         </a>
                                                     </div>
@@ -53,6 +53,12 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+        <!-- Loading -->
+        <div class="loading_bg" v-show="loadingShow">
+            <div class="loading">
+                <img src="/static/img/loading.65b0197.svg" class="loading__pic">
             </div>
         </div>
     </div>
@@ -68,7 +74,8 @@ export default {
   data () {
     return {
       theaterList: [],
-      theaterHeight: '0px'
+      theaterHeight: '0px',
+      loadingShow: true
     }
   },
   methods: {
@@ -78,11 +85,15 @@ export default {
   },
   mounted () {
     axios.get('https://api.juooo.com/theatre/index/getTheatreList?page=1&version=6.1.22&referer=2').then((res) => {
-      this.theaterList = res.data.data.theatre_list
-      this.$nextTick(() => {
-        new BetterScroll('.wrapper', {
+      console.log(res.data.code)
+      if (res.data.code === '200') {
+        this.loadingShow = false
+        this.theaterList = res.data.data.theatre_list
+        this.$nextTick(() => {
+          new BetterScroll('.wrapper', {
+          })
         })
-      })
+      }
     })
     this.theaterHeight = document.documentElement.clientHeight - 50 - this.$refs.headNav.clientHeight + 'px'
   }
@@ -225,6 +236,28 @@ export default {
                     }
                 }
             }
+        }
+        /* Loading */
+        .loading_bg{
+        position: fixed;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 200;
+        overflow: hidden;
+        background-color: #FFFFFF;
+        .loading{
+            display: flex;
+            width: 100%;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+            .loading__pic{
+            width: 1.06667rem;
+            height: 1.06667rem;
+            }
+        }
         }
     }
 </style>

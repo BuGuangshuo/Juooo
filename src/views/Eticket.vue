@@ -13,7 +13,7 @@
             <div class="ticket-empty">
                 <img src="/static/img/ticket_empty.cf4b072.png" alt="" class="ticket-empty__img">
                 <div class="ticket-empty__tips">暂无电子票</div>
-                <button class="ju-button login ju-button--gradient ju-button--full-round ju-button--middle ju-button--round">登录</button>
+                <button class="ju-button login ju-button--gradient ju-button--full-round ju-button--middle ju-button--round" @click="$router.push('/login')">登录</button>
             </div>
         </div>
     </div>

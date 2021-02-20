@@ -63,6 +63,12 @@
             <div class="load-more__tips">没有更多了</div>
         </div>
         </div>
+        <!-- Loading -->
+        <div class="loading_bg" v-show="loadingShow">
+            <div class="loading">
+                <img src="/static/img/loading.65b0197.svg" class="loading__pic">
+            </div>
+        </div>
     </div>
 </template>
 <script>
@@ -72,7 +78,8 @@ export default {
     return {
       detail: 0,
       detailList: [],
-      theatreList: null
+      theatreList: null,
+      loadingShow: true
     }
   },
   methods: {
@@ -83,7 +90,10 @@ export default {
   mounted () {
     this.$store.commit('hide')
     axios.get(`https://api.juooo.com/Show/Search/getShowList?page=1&venue_id=${this.$route.params.id}`).then((res) => {
-      this.detailList = res.data.data.list
+      if (res.data.code === '200') {
+        this.loadingShow = false
+        this.detailList = res.data.data.list
+      }
     })
     axios.get(`https://api.juooo.com/theatre/index/getTheatreInfo?theatre_id=${this.$route.params.id2}&longitude=&latitude=&version=6.1.22&referer=2`).then((res) => {
       this.theatreList = res.data.data
@@ -95,6 +105,28 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+    /* Loading */
+    .loading_bg{
+      position: fixed;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 200;
+      overflow: hidden;
+      background-color: #FFFFFF;
+      .loading{
+        display: flex;
+        width: 100%;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+        .loading__pic{
+          width: 1.06667rem;
+          height: 1.06667rem;
+        }
+      }
+    }
     .theater{
         height: 100%;
     }

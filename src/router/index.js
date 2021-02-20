@@ -8,6 +8,7 @@ import Center from '../views/Center.vue'
 import Ticket from '../views/Ticket.vue'
 import Detail from '../views/theatre/Detail.vue'
 import Login from '../views/Login.vue'
+import Search from '../views/Search.vue'
 
 Vue.use(VueRouter)
 
@@ -45,6 +46,10 @@ const routes = [
     component: Login
   },
   {
+    path: '/search',
+    component: Search
+  },
+  {
     path: '*', // 通配符
     redirect: '/index' // 重定向地址
   }
@@ -53,4 +58,9 @@ const routes = [
 const router = new VueRouter({
   routes
 })
+
+/* //全局拦截
+router.beforeEach((to,from,next)=>{
+
+}) */
 export default router

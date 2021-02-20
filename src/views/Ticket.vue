@@ -89,6 +89,12 @@
         </div>
         <ticket-tabbar></ticket-tabbar>
         </div>
+        <!-- Loading -->
+        <div class="loading_bg" v-show="loadingShow">
+            <div class="loading">
+                <img src="/static/img/loading.65b0197.svg" class="loading__pic">
+            </div>
+        </div>
     </div>
 </template>
 <script>
@@ -108,13 +114,17 @@ export default {
   },
   data () {
     return {
-      info: null
+      info: null,
+      loadingShow: true
     }
   },
   mounted () {
     this.$store.commit('hide')
     axios.get(`https://api.juooo.com/Schedule/Schedule/getScheduleInfo?schedular_id=${this.$route.params.id}&version=6.1.22&referer=2`).then((res) => {
-      this.info = res.data.data.static_data
+      if (res.data.code === '200') {
+        this.loadingShow = false
+        this.info = res.data.data.static_data
+      }
     })
   },
   destroyed () {
@@ -495,5 +505,27 @@ export default {
         background-repeat: no-repeat;
         -webkit-box-sizing: border-box;
         box-sizing: border-box;
+    }
+    /* Loading */
+    .loading_bg{
+      position: fixed;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 200;
+      overflow: hidden;
+      background-color: #FFFFFF;
+      .loading{
+        display: flex;
+        width: 100%;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+        .loading__pic{
+          width: 1.06667rem;
+          height: 1.06667rem;
+        }
+      }
     }
 </style>

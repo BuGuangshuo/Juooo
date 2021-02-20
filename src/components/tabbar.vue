@@ -32,7 +32,7 @@
 footer {
   box-shadow: 0px 0px 0.06667rem #ebebeb;
   position: fixed;
-  z-index: 5;
+  z-index: 201;
   left: 0;
   bottom: 0;
   width: 100%;

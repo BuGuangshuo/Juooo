@@ -128,7 +128,7 @@ export default {
         height: 100%;
         background-color: #F5F5F5;
         .mine__body{
-            padding-bottom: 1.6rem;
+            padding-bottom: 3.1rem;
             .mine-info{
                 height: 5.58667rem;
                 background: url(/static/img/personal_bg_1.f5fc96c.png) no-repeat top center;

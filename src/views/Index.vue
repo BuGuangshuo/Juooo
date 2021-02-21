@@ -102,7 +102,7 @@
                         <div class="tour-wrap__info">
                             <div class="tour-block">
                                 <tour-swiper :key="tourList.length">
-                                    <div class="swiper-slide" v-for="tour_data in tourList" :key="tour_data.id">
+                                    <div class="swiper-slide" v-for="tour_data in tourList" :key="tour_data.id" @click="handleTourClick(tour_data.id)">
                                         <div class="tour-block__item">
                                             <div class="ju-schedule-cell-wrapper">
                                                 <div class="ju-schedule-cell">
@@ -329,6 +329,9 @@ export default {
     },
     handleClick (id) {
       this.$router.push(`/ticket/${id}`)
+    },
+    handleTourClick (id) {
+      this.$router.push(`/tour/${id}`)
     }
   },
   mounted () {

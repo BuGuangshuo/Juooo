@@ -9,6 +9,7 @@ import Ticket from '../views/Ticket.vue'
 import Detail from '../views/theatre/Detail.vue'
 import Login from '../views/Login.vue'
 import Search from '../views/Search.vue'
+import Tour from '../views/Tour.vue'
 
 Vue.use(VueRouter)
 
@@ -48,6 +49,10 @@ const routes = [
   {
     path: '/search',
     component: Search
+  },
+  {
+    path: '/tour/:id',
+    component: Tour
   },
   {
     path: '*', // 通配符

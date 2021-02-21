@@ -37,6 +37,7 @@ export default {
     handleAll () {
       this.changeCityId(0)
       this.changeCityName('全国')
+      this.changeCityAbbreviation('')
       this.$router.back()
     },
     handleClick (item) {

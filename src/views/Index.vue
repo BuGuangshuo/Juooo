@@ -70,7 +70,7 @@
 
                                      <div class="vip-ahead__list__info">
                                          <a href="javascript:;" >
-                                             <h3 class="vip-ahead__list__info__title">
+                                             <h3 class="vip-ahead__list__info__title text-double">
                                                  {{vip_data.schedular_name}}
                                              </h3>
                                          </a>

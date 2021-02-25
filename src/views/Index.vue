@@ -320,10 +320,15 @@ export default {
         this.finished = true
       }
       this.current++
-      axios.get(`https://api.juooo.com/Show/Search/getShowList?city_id=${this.$store.state.cityId}&category=&keywords=&venue_id=&start_time=&show_ids=&page=${this.current}&referer_type=index`).then((res) => {
+      axios.get(`https://api.juooo.com/Show/Search/getShowList?city_id=${this.$store.state.cityId}&category=&keywords=&venue_id=&start_time=&show_ids=&page=${this.current}&referer_type=2`).then((res) => {
         setTimeout(() => {
           this.modelList = [...this.modelList, ...res.data.data.list]
-          this.loading = false // 取得数据后将loading赋为false，等到下次到底之后再自动变为true
+          this.total = res.data.data.total
+          if (this.total === 0) {
+            this.finished = true
+          } else {
+            this.loading = false // 取得数据后将loading赋为false，等到下次到底之后再自动变为true
+          }
         }, 0)
       })
     },
@@ -352,7 +357,7 @@ export default {
       this.categoryList = res.data.data[0].list
       this.categoryFirstList.push(res.data.data[0].list[0])
     })
-    axios.get(`https://api.juooo.com/Show/Search/getShowList?city_id=${this.$store.state.cityId}&category=&keywords=&venue_id=&start_time=&show_ids=&page=1&referer_type=index`).then((res) => {
+    axios.get(`https://api.juooo.com/Show/Search/getShowList?city_id=${this.$store.state.cityId}&category=&keywords=&venue_id=&start_time=&show_ids=&page=1&referer_type=2`).then((res) => {
       this.modelList = res.data.data.list
       this.total = res.data.data.total // 在第一次加载数据时将total总长度赋值
     })
